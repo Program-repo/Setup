@@ -1,0 +1,6 @@
+## Download Micro Editor
+# get the latest .deb file from https://github.com/zyedidia/micro/releases
+# move file from download folder to linux folder
+# run the apt application
+sudo apt install ./micro-2.0.10-amd64.deb
+# remove downloaded .deb file
