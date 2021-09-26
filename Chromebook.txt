@@ -4,3 +4,7 @@
 # run the apt application
 sudo apt install ./micro-2.0.10-amd64.deb
 # remove downloaded .deb file
+
+## Installing gawk 
+sudo apt-get update
+sudo apt-get install gawk
