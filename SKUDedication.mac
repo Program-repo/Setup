@@ -1,0 +1,71 @@
+[PCOMM SCRIPT HEADER]
+LANGUAGE=VBSCRIPT
+DESCRIPTION=
+[PCOMM SCRIPT SOURCE]
+OPTION EXPLICIT
+autECLSession.SetConnectionByName(ThisSessionName)
+REM definitions
+Dim objExcel, objWorkbook, intRow
+Dim item, coo, location, minq, maxq
+
+
+REM read excel file
+Set objExcel = CreateObject("Excel.Application")
+Set objWorkbook = objExcel.Workbooks.Open ("C:\Users\sgutierr\Desktop\TD.xlsx")
+intRow = 2
+
+While objExcel.Cells(intRow,1).Value <> ""
+	REM Wscript.Echo "item: " & objExcel.Cells(intRow, 7).Value
+	item		=	objExcel.Cells(intRow, 7).Value
+	coo			=	objExcel.Cells(intRow, 8).Value
+	location	=	objExcel.Cells(intRow, 9).Value
+	minq		=	objExcel.Cells(intRow, 11).Value
+	maxq		=	objExcel.Cells(intRow, 12).Value
+	subSub1_
+	intRow = intRow + 1
+Wend
+objExcel.Quit
+
+
+sub subSub1_()
+   autECLSession.autECLOIA.WaitForAppAvailable
+   
+   autECLSession.autECLOIA.WaitForInputReady
+   autECLSession.autECLPS.SendKeys location, 4, 26
+   autECLSession.autECLOIA.WaitForInputReady
+   autECLSession.autECLPS.SendKeys "[enter]"
+   autECLSession.autECLOIA.WaitForAppAvailable
+   
+   autECLSession.autECLOIA.WaitForInputReady
+   autECLSession.autECLPS.SendKeys "2",13,2
+   autECLSession.autECLOIA.WaitForInputReady
+   autECLSession.autECLPS.SendKeys "[enter]"
+   autECLSession.autECLOIA.WaitForAppAvailable
+   
+   autECLSession.autECLOIA.WaitForInputReady
+   autECLSession.autECLPS.SendKeys "[roll up]"
+   autECLSession.autECLOIA.WaitForInputReady
+   autECLSession.autECLPS.SendKeys "[roll up]"
+   autECLSession.autECLOIA.WaitForInputReady
+
+   autECLSession.autECLOIA.WaitForAppAvailable
+   autECLSession.autECLPS.SendKeys item, 10, 16
+   autECLSession.autECLOIA.WaitForInputReady
+   autECLSession.autECLPS.SendKeys "F", 13, 24
+   autECLSession.autECLOIA.WaitForInputReady
+   autECLSession.autECLPS.SendKeys coo, 17, 24
+   autECLSession.autECLOIA.WaitForInputReady
+    autECLSession.autECLPS.SendKeys "[roll up]"
+   autECLSession.autECLOIA.WaitForAppAvailable
+   
+   autECLSession.autECLOIA.WaitForInputReady
+   autECLSession.autECLPS.SendKeys maxq, 9, 24
+   autECLSession.autECLOIA.WaitForInputReady
+   autECLSession.autECLPS.SendKeys minq, 10, 24
+   autECLSession.autECLPS.SendKeys "[pf16]"
+   autECLSession.autECLOIA.WaitForAppAvailable
+  
+   autECLSession.autECLOIA.WaitForInputReady
+   autECLSession.autECLPS.SendKeys "[pf12]"
+   autECLSession.autECLOIA.WaitForAppAvailable
+end sub
