@@ -4,6 +4,13 @@ DESCRIPTION=
 [PCOMM SCRIPT SOURCE]
 OPTION EXPLICIT
 autECLSession.SetConnectionByName(ThisSessionName)
+REM ****** Excel Input file *********
+REM A           B               C   		 D	E	F	G		H	I
+REM Part Number	Storage Loc	Area	         D	E	F	Item 	        COO	Location
+REM 020001A2X0	PM16B061	PM16-Pick Module			020001A2X0	099	PM 16B061
+REM 020001A3X0	PM17C074	PM17-Pick Module			020001A3X0	099	PM 17C074
+REM <---------------input---------------------->                        =A2          Constant   =CONCATENATE(MID(B2,1,2)," ",MID(B2,3,15))
+
 REM definitions
 Dim objExcel, objWorkbook, intRow
 Dim item, coo, location, minq, maxq
